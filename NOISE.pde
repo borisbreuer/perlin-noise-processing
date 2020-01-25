@@ -14,8 +14,8 @@ float trail;
 float color_dec = 25.5;
 float t;
 
-float noiseMax = 700;
-float circleResolution =24;
+float noiseMax;
+float circleResolution = 24;
 
 NoiseLoop rNoise;
 NoiseLoop cNoise;
@@ -25,11 +25,21 @@ NoiseLoop dNoise;
 
 
 void setup() {
-  size(1920, 1080);
+
+  noiseMax = 300;
+
   frameRate(30);
   noiseSeed(20);
+  // Preview
+    //size(500, 500);
+    //rNoise = new NoiseLoop(noiseMax, 0, 150, 50, 50);
+  // Preview <
 
-  rNoise = new NoiseLoop(noiseMax, 200, 500, 50, 50);
+  // HD Output
+    size(1920, 1080);
+    rNoise = new NoiseLoop(noiseMax, 200, 500, 50, 50);
+  // HD Output <
+
   cNoise = new NoiseLoop(noiseMax, 0, 360, 350, 1055);
 
   xNoise = new NoiseLoop(noiseMax, -move, move, 500, 200);
@@ -37,14 +47,16 @@ void setup() {
 
   dNoise = new NoiseLoop(noiseMax-200, -1, 5, 275, 300);
 
-
   frameRate(60);
 }
 
 void draw() {
+  
   background(10);
   colorMode(RGB);
+  
   // Raster 
+  
   noStroke();
   fill(20);
   translate(0, 0);
@@ -64,10 +76,9 @@ void draw() {
       circle(x*20+10, y*20+10, d);
     }
   }
-  //filter(BLUR, 1.5);
-  //filter(BLUR, 0);
 
   // Blob
+  
   translate(width/2, height/2);
 
   noFill();
@@ -110,15 +121,13 @@ void draw() {
   }
 
   float phaseIncrement = TWO_PI/(12.0*300);
-  //double phaseIncrement = 0.5;
   t += phaseIncrement;
   phase += phaseIncrement;
-
 
   if (output == true) {
     int currentFrame = int(phase/phaseIncrement);
     int frames = int(TWO_PI/phaseIncrement);
-    saveFrame("output/noise-####.png");
+    saveFrame("output/noise-500x500-####.png");
     println(phaseIncrement+" / "+phase+" / "+ TWO_PI +" / " + currentFrame + " / "+frames);
     if (phase>=TWO_PI) {
       println("DONE: "+phaseIncrement+" / "+phase+" / "+ TWO_PI +" / " + currentFrame + " / "+frames);

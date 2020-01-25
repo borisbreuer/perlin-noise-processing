@@ -3,6 +3,6 @@
 convert -delay 1.6 -loop 0 line-*.png noiseloop.gif
 
 
-ffmpeg -f image2 -framerate 60 -i output/line-%5d.png noise.gif
+ffmpeg -f image2 -framerate 60 -i output/noise-500x500-%4d.png output/500/noise.gif
 
-$ ffmpeg -f image2 -i output/noise-%4d.png -filter_complex "[0:v] fps=15,scale=w=720:h=-1,split [a][b];[a] palettegen=stats_mode=single [p];[b][p] paletteuse=new=1" noise.gif
+ffmpeg -f image2 -i output/noise-hd-%4d.png -filter_complex "[0:v] fps=15,scale=w=720:h=-1,split [a][b];[a] palettegen=stats_mode=single [p];[b][p] paletteuse=new=1" output/noise.gif
