@@ -15,7 +15,7 @@ float color_dec = 25.5;
 float t;
 
 float noiseMax;
-float circleResolution = 24;
+float circleResolution = 16;
 
 NoiseLoop rNoise;
 NoiseLoop cNoise;
@@ -31,13 +31,14 @@ void setup() {
   frameRate(30);
   noiseSeed(20);
   // Preview
-    //size(500, 500);
-    //rNoise = new NoiseLoop(noiseMax, 0, 150, 50, 50);
+    size(800, 500);
+    rNoise = new NoiseLoop(noiseMax, 0, 150, 50, 50);
+    smooth(2);
   // Preview <
 
   // HD Output
-    size(1920, 1080);
-    rNoise = new NoiseLoop(noiseMax, 200, 500, 50, 50);
+    // size(1920, 1080);
+    // rNoise = new NoiseLoop(noiseMax, 200, 500, 50, 50);
   // HD Output <
 
   cNoise = new NoiseLoop(noiseMax, 0, 360, 350, 1055);
